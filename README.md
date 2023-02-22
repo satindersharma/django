@@ -254,16 +254,16 @@ def dict_key(d, key):
 
 ```
 
-
+#### https://console.firebase.google.com/
 Step 1: Create a Firebase Project
 
-Goto firebase console and click on Add project to create a new firebase project. Since the goal of using firebase is its cloud messaging feature, you can disable Google Analytics.
+Goto firebase console and click on `Add project` to create a new firebase project. Since the goal of using firebase is its cloud messaging feature, you can disable Google Analytics.
 Step 2: Download a JSON File Including Project's Credentials
 
-Next to the Project Overview on the left menu there is a gear icon which redirects you to the project settings page.
+Next to the `Project Overview` on the left menu there is a gear icon which redirects you to the `project settings` page.
 
-Click on the gear icon and select Project settings
+Click on the gear icon and select `Project settings`
 
-Then, click on Service accounts and then click on Generate new private key. Download and store the JSON file on your device.
+Then, click on ``Service accounts and then click on `Generate new private key`. Download and store the JSON file on your device.
 
 Security Note: Do NOT keep this file inside the project root and never publish it on Github, Gitlab,...
