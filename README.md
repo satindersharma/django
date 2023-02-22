@@ -258,6 +258,8 @@ def dict_key(d, key):
 Step 1: Create a Firebase Project
 
 Goto firebase console and click on `Add project` to create a new firebase project. Since the goal of using firebase is its cloud messaging feature, you can disable Google Analytics.
+
+
 Step 2: Download a JSON File Including Project's Credentials
 
 Next to the `Project Overview` on the left menu there is a gear icon which redirects you to the `project settings` page.
