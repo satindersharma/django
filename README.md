@@ -254,6 +254,7 @@ def dict_key(d, key):
 
 ```
 
+### django-fcm
 #### https://console.firebase.google.com/
 Step 1: Create a Firebase Project
 
@@ -269,3 +270,31 @@ Click on the gear icon and select `Project settings`
 Then, click on ``Service accounts and then click on `Generate new private key`. Download and store the JSON file on your device.
 
 Security Note: Do NOT keep this file inside the project root and never publish it on Github, Gitlab,...
+
+
+### urls
+```python
+      path('base/',
+         include(
+             ('project.apps.base.api.urls', 'base'),
+             namespace='base'
+         )
+         ),
+      path('',
+         include(('project.apps.account.urls', 'account'), namespace='account')
+         ),
+         
+         
+    path('api/v0.1/',
+         include(('project.urls.api', 'api'), namespace='api')
+         ),
+         
+         
+    path('account/',
+         include(
+             ('project.apps.account.api.urls', 'account'),
+             namespace='account'
+         )
+         ),
+         
+```
