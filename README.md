@@ -302,7 +302,7 @@ Security Note: Do NOT keep this file inside the project root and never publish i
 
 
 ### adding user on form_valid
-
+###### https://docs.djangoproject.com/en/4.1/topics/class-based-views/generic-editing/#model-forms
 ```python
 class AuthorCreateView(LoginRequiredMixin, CreateView):
     model = Author
