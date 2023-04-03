@@ -298,3 +298,18 @@ Security Note: Do NOT keep this file inside the project root and never publish i
          ),
          
 ```
+
+
+
+### adding user on form_valid
+
+```python
+class AuthorCreateView(LoginRequiredMixin, CreateView):
+    model = Author
+    fields = ['name']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+        
+```
