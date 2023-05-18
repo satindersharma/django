@@ -313,3 +313,81 @@ class AuthorCreateView(LoginRequiredMixin, CreateView):
         return CreateView.form_valid(self, form)
         
 ```
+
+
+
+### How to write API
+
+#### API View
+####  `view.py`
+
+```python
+
+import logging
+from .serializers import SerializerAPIAccount
+from .response_format import format_API_response
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_400_BAD_REQUEST
+from rest_framework.views import APIView
+
+logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------
+# ViewAPIAccount
+# ---------------------------------------------------------------
+class ViewAPIAccount(APIView):
+
+    serializer_class = SerializerAPIAccount
+
+    # ---------------------------------------------------------------
+    # get_serializer
+    # ---------------------------------------------------------------
+    def get_serializer(self, *args, **kwargs):
+        """
+        Return the serializer instance
+        """
+        return serl.serializer_class(*args, **kwargs)
+
+    # ---------------------------------------------------------------
+    # post
+    # ---------------------------------------------------------------
+    def post(self, request, *args, **kwargs):
+
+        serializer = self.serializer_class(
+            data=request.data,
+            context={'request': request}
+        )
+
+        if serializer.is_valid():
+            response = serializer.save()
+            data = {
+                'code': 200,
+                'status': 'success',
+                'result': response,
+                'message':'Registered successfully'
+            }
+            return Response(
+                data,
+                status=HTTP_200_OK
+            )
+        data = {
+            'code': 400,
+            'status': 'error',
+            'result': serializer.errors,
+            # 'message':'Registration failed. Please try again.'
+        }
+        return Response(
+            data,
+            status=HTTP_400_BAD_REQUEST
+        )
+
+
+```
+
+
+
+
+
