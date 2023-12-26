@@ -1,7 +1,16 @@
 # django
 
 
+#### Handle Migrations/Migrate error
+#### follow the steps in this order
 
+##### delete the table
+`DROP TABLE "client";`
+##### delete the modified migrations file eg. `migrations/0008_client.py`
+`python manage.py migrate post --fake`
+`python manage.py migrate --fake-initial post zero`
+`python manage.py makemigrations post`
+`python manage.py migrate post`
 
 
 #### Django RuntimeWarning
