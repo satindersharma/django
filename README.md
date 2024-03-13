@@ -464,3 +464,24 @@ class CustomPageNumberPagination(PageNumberPagination):
 
 
 
+```python
+def get_queryset(self):
+        now = timezone.now().date()
+        two_day_ago = now - timedelta(days=2)
+        two_day_next = now + timedelta(days=2)
+
+        
+        '''
+        without this F("last_post_date").asc(nulls_first=True)
+        the Q(last_post_date=None) was ignored 
+        means the result query dosn't have the sheet title with last_post_date as None value
+
+        now the result is sorted as None at first then the last_post_date in ascending order
+        '''
+        qs = Sheet.objects.exclude(sheet__isSheetHidden=True).values('sheet_id').annotate(
+            last_post_date=Max('post_date')).values('sheet_id', 'sheet__title', 'last_post_date').filter(Q(last_post_date__lt=two_day_ago) | Q(last_post_date__gt=two_day_next) | Q(
+            last_post_date=None)).values_list('sheet__title', flat=True).order_by(F("last_post_date").asc(nulls_first=True))
+
+        
+        return qs
+```
