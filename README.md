@@ -484,3 +484,19 @@ def get_queryset(self):
 
         return qs
 ```
+
+```python
+python manage.py makemigrations post
+
+python manage.py migrate --fake-initial post zero
+python manage.py migrate post --fake
+python manage.py migrate --fake post zero
+python manage.py migrate post
+
+<!-- delete the table -->
+DROP TABLE "client";
+<!-- delete the modified migrations file eg. migrations/0008_client.py-->
+python manage.py migrate --fake-initial post zero
+python manage.py makemigrations post
+python manage.py migrate post
+```
